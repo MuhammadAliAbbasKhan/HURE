@@ -49,6 +49,8 @@ import ProjectExplorer from './pages/Explore';
 import FAQs from './pages/FAQs';
 import HUREConnect from './components/Connect';
 import DemoRequestPage from './components/RequestDemo';
+import UserDashboard from './pages/UsersDashboard';
+import ClinicDashboard from './pages/ClinicDashboard';
 
 
 
@@ -76,6 +78,9 @@ function App() {
         <Route path="connect" element={<HUREConnect />} />
         
         <Route path="requestdemo" element={<DemoRequestPage />} />
+        
+        <Route path="userdashboard" element={<UserDashboard />} />
+        <Route path="clinicdashboard" element={<ClinicDashboard />} />
 
 
 {/* 

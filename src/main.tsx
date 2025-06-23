@@ -1,21 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import { BrowserRouter } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext.tsx'
-import './i18n.ts'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { AuthProvider } from "./contexts/AuthContext.tsx";
+import "./i18n.ts";
+import { Provider } from "react-redux";
+import { store } from './redux/Store';
+import { BrowserRouter } from 'react-router-dom';  // ✅ Add this
 
-import websites from '../utils/Website/Website_Info.js';
-
-document.title = websites[0].name; // Sets the title to the first website's name
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <BrowserRouter>
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
       <AuthProvider>
-        <App />
+          <Provider store={store}>
+            <BrowserRouter> {/* ✅ Wrap App in BrowserRouter */}
+              <App />
+            </BrowserRouter>
+          </Provider>
       </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
-)
+    </React.StrictMode>
+  );
+} else {
+  throw new Error("Root element not found");
+}
